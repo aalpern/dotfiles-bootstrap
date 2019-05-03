@@ -28,7 +28,7 @@ brew install git go node source-highlight jq jo protobuf python@3
 
 echo "==> Installing Homebrew virtualization tools..."
 brew cask install virtualbox
-brew install docker docker-machine
+brew install docker docker-machine docker-compose
 
 echo "==> Creating default docker machine..."
 docker-machine create \
