@@ -30,6 +30,13 @@ echo "==> Installing Homebrew virtualization tools..."
 brew cask install virtualbox
 brew install docker docker-machine
 
+echo "==> Creating default docker machine..."
+docker-machine create \
+               --driver virtualbox \
+               --virtualbox-memory "2048" \
+               --virtualbox-disk-size "40000"  \
+               default
+
 if [ ! -d "$HOME/dev/python/bin" ]; then
     echo "==> Bootstrapping python env..."
     mkdir -p $HOME/dev
@@ -84,6 +91,8 @@ wget https://github.com/MacDownApp/macdown/releases/download/v0.7.1/MacDown.app.
 wget https://emacsformacosx.com/emacs-builds/Emacs-26.2-universal.dmg
 wget https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip
 wget https://iterm2.com/downloads/stable/latest -O iterm.zip
+wget https://freemacsoft.net/downloads/AppCleaner_3.5.zip
+wget https://central.github.com/deployments/desktop/desktop/latest/darwin -O GithubDesktop.zip
 unzip *.zip
 
 open $HOME/tmp
