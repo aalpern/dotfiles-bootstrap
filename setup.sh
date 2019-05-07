@@ -47,13 +47,9 @@ fi
 
 source $HOME/dev/python/bin/activate
 
-if [ -z `which aws` ]; then
-    echo "==> Installing Amazon AWS CLI..."
-    source $HOME/dev/python/bin/activate
-    pip install awscli
-else
-    echo "==> Skipping AWS CLI"
-fi
+pip install --upgrade pip
+pip install --upgrade b2       # Backblaze B2 CLI
+pip install --upgrade awscli   # Amazon Web Services CLI
 
 if [ -z `which homesick` ]; then
     echo "==> Installing homesick..."
