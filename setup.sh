@@ -21,7 +21,7 @@ else
 fi
 
 echo "==> Installing Homebrew utilities..."
-brew install wget tree
+brew install wget tree rclone
 
 echo "==> Installing Homebrew dev tools..."
 brew install git go node source-highlight jq jo protobuf python@3
