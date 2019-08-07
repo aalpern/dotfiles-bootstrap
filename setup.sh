@@ -24,7 +24,7 @@ echo "==> Installing Homebrew utilities..."
 brew install wget tree rclone
 
 echo "==> Installing Homebrew dev tools..."
-brew install git go node source-highlight jq jo protobuf python@3
+brew install git go node source-highlight jq jo protobuf python@3 gdub
 
 echo "==> Installing Homebrew virtualization tools..."
 brew cask install virtualbox
