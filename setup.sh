@@ -41,15 +41,13 @@ if [ ! -d "$HOME/dev/python/bin" ]; then
     echo "==> Bootstrapping python env..."
     mkdir -p $HOME/dev
     python3 -m venv $HOME/dev/python
+    source $HOME/dev/python/bin/activate
+    pip install --upgrade pip
+    pip install --upgrade b2       # Backblaze B2 CLI
+    pip install --upgrade awscli   # Amazon Web Services CLI
 else
     echo "==> Skipping global python env"
 fi
-
-source $HOME/dev/python/bin/activate
-
-pip install --upgrade pip
-pip install --upgrade b2       # Backblaze B2 CLI
-pip install --upgrade awscli   # Amazon Web Services CLI
 
 if [ -z `which homesick` ]; then
     echo "==> Installing homesick..."
@@ -75,6 +73,13 @@ if ! [ -d "$HOME/.homesick/repos/dotfiles" ]; then
 else
     echo "==> Dotfiles already set up"
 fi
+
+# Configure iTerm2 to load my stored preferences
+
+# Specify the preferences directory
+defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/.iterm2"
+# Tell iTerm2 to use the custom preferences in the directory
+defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 
 #
 # OSX Apps
