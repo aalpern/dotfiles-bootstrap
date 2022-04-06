@@ -3,7 +3,7 @@
 export EDITOR=emacs
 
 #
-# Shell and SSH 
+# Shell and SSH
 #
 
 echo "==> Changing shell to ZSH..."
@@ -20,13 +20,25 @@ else
     echo "==> Skipping brew"
 fi
 
-echo "==> Installing Homebrew utilities..."
-brew install wget tree rclone
+echo "==> Installing MacOS apps.."
+brew install --cask emacs
+brew install --cask iterm2
+brew install --cask github
+brew install --cask appcleaner
 
-echo "==> Installing Homebrew dev tools..."
+echo "==> Installing MacOS fonts..."
+brew tap homebrew/cask-fonts
+brew install font-hack
+brew install font-anonymous-pro
+brew install font-inconsolata
+
+echo "==> Installing utilities..."
+brew install wget tree rclone xz
+
+echo "==> Installing dev tools..."
 brew install git go node source-highlight jq jo protobuf python@3 gdub
 
-echo "==> Installing Homebrew virtualization tools..."
+echo "==> Installing virtualization tools..."
 brew cask install virtualbox
 brew install docker docker-machine docker-compose
 
@@ -43,8 +55,8 @@ if [ ! -d "$HOME/dev/python/bin" ]; then
     python3 -m venv $HOME/dev/python
     source $HOME/dev/python/bin/activate
     pip install --upgrade pip
-    pip install --upgrade b2       # Backblaze B2 CLI
-    pip install --upgrade awscli   # Amazon Web Services CLI
+    pip install --upgrade b2
+    pip install --upgrade awscli
 else
     echo "==> Skipping global python env"
 fi
@@ -73,27 +85,3 @@ if ! [ -d "$HOME/.homesick/repos/dotfiles" ]; then
 else
     echo "==> Dotfiles already set up"
 fi
-
-# Configure iTerm2 to load my stored preferences
-
-# Specify the preferences directory
-defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/.iterm2"
-# Tell iTerm2 to use the custom preferences in the directory
-defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
-
-#
-# OSX Apps
-#
-
-echo "==> Downloading OS X Apps..."
-mkdir -p $HOME/tmp
-cd $HOME/tmp
-wget https://github.com/MacDownApp/macdown/releases/download/v0.7.1/MacDown.app.zip
-wget https://emacsformacosx.com/emacs-builds/Emacs-26.2-universal.dmg
-wget https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip
-wget https://iterm2.com/downloads/stable/latest -O iterm.zip
-wget https://freemacsoft.net/downloads/AppCleaner_3.5.zip
-wget https://central.github.com/deployments/desktop/desktop/latest/darwin -O GithubDesktop.zip
-unzip *.zip
-
-open $HOME/tmp
